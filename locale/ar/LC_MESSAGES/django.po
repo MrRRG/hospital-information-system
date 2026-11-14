@@ -1,0 +1,507 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: HIS 1.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+msgid "%(age)s years"
+msgstr "%(age)s سنة"
+
+msgid ""
+"%(doctor)s already has an appointment at %(time)s. Pick another time or "
+"doctor."
+msgstr "لدى %(doctor)s موعد في الساعة %(time)s. اختر وقتاً أو طبيباً آخر."
+
+msgid "%(greeting)s, %(name)s."
+msgstr "%(greeting)s، %(name)s."
+
+msgid "%(patient)s: %(status)s."
+msgstr "%(patient)s: %(status)s."
+
+msgid "- Select an option -"
+msgstr "- اختر -"
+
+msgid "Action"
+msgstr "الإجراء"
+
+msgid "Actions"
+msgstr "الإجراءات"
+
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Administrator"
+msgstr "مدير النظام"
+
+msgid "Age"
+msgstr "العمر"
+
+msgid "Al-Afaleq"
+msgstr "الأفالق"
+
+msgid "Al-Afaleq Hospital"
+msgstr "مستشفى الأفالق"
+
+msgid "All actions"
+msgstr "كل الإجراءات"
+
+msgid "All doctors"
+msgstr "كل الأطباء"
+
+msgid "Allergies"
+msgstr "الحساسية"
+
+msgid "Appointment updated."
+msgstr "تم تحديث الموعد."
+
+msgid "Appointments"
+msgstr "المواعيد"
+
+msgid "Appointments today"
+msgstr "مواعيد اليوم"
+
+msgid "Audit log"
+msgstr "سجل العمليات"
+
+msgid "Back to patients"
+msgstr "العودة إلى المرضى"
+
+msgid "Back to visits"
+msgstr "العودة إلى الزيارات"
+
+msgid "Blood pressure"
+msgstr "ضغط الدم"
+
+msgid "Blood pressure - diastolic"
+msgstr "ضغط الدم - الانبساطي"
+
+msgid "Blood pressure - systolic"
+msgstr "ضغط الدم - الانقباضي"
+
+msgid "Blood type"
+msgstr "فصيلة الدم"
+
+msgid "Book and manage clinic appointments."
+msgstr "حجز مواعيد العيادة وإدارتها."
+
+msgid "Book appointment"
+msgstr "حجز موعد"
+
+msgid "Booked %(patient)s with %(doctor)s at %(time)s."
+msgstr "تم حجز موعد %(patient)s مع %(doctor)s في الساعة %(time)s."
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Cancelled"
+msgstr "ملغي"
+
+msgid "Care, kept in order."
+msgstr "رعاية منظّمة بإتقان."
+
+msgid "Changed"
+msgstr "تعديل"
+
+msgid "Changes saved."
+msgstr "تم حفظ التغييرات."
+
+msgid "Check in"
+msgstr "تسجيل الحضور"
+
+msgid "Checked in"
+msgstr "تم الحضور"
+
+msgid "Choose today or a future date."
+msgstr "اختر تاريخ اليوم أو تاريخاً لاحقاً."
+
+msgid "Chronic conditions"
+msgstr "الأمراض المزمنة"
+
+msgid "Complete"
+msgstr "إنهاء"
+
+msgid "Completed"
+msgstr "مكتمل"
+
+msgid "Created"
+msgstr "إنشاء"
+
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "Date of birth"
+msgstr "تاريخ الميلاد"
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "Diagnosis"
+msgstr "التشخيص"
+
+msgid "Doctor"
+msgstr "الطبيب"
+
+msgid "Doctor's assessment"
+msgstr "تقييم الطبيب"
+
+msgid "Doctor's notes"
+msgstr "ملاحظات الطبيب"
+
+msgid "Edit"
+msgstr "تعديل"
+
+msgid "Edit %(name)s"
+msgstr "تعديل %(name)s"
+
+msgid "Edit visit"
+msgstr "تعديل الزيارة"
+
+msgid "Enter a 10-digit National ID or Iqama number starting with 1 or 2."
+msgstr "أدخل رقم هوية وطنية أو إقامة من 10 أرقام يبدأ بـ 1 أو 2."
+
+msgid "Enter both blood pressure numbers, or leave both empty."
+msgstr "أدخل رقمي ضغط الدم معاً، أو اتركهما فارغين."
+
+msgid ""
+"Every sign-in and every record opened, created or changed. Entries cannot be"
+" edited or deleted here."
+msgstr ""
+"كل عملية دخول وكل سجل فُتح أو أُنشئ أو عُدّل. لا يمكن تعديل السجلات أو حذفها"
+" من هنا."
+
+msgid "Failed sign-in"
+msgstr "فشل تسجيل الدخول"
+
+msgid "Female"
+msgstr "أنثى"
+
+msgid "File no."
+msgstr "رقم الملف"
+
+msgid "File number"
+msgstr "رقم الملف"
+
+msgid "File number %(mrn)s"
+msgstr "رقم الملف %(mrn)s"
+
+msgid "Filter"
+msgstr "تصفية"
+
+msgid "First name"
+msgstr "الاسم الأول"
+
+msgid "Gender"
+msgstr "الجنس"
+
+msgid "Good afternoon"
+msgstr "طاب يومك"
+
+msgid "Good evening"
+msgstr "مساء الخير"
+
+msgid "Good morning"
+msgstr "صباح الخير"
+
+msgid "Heart rate"
+msgstr "معدل النبض"
+
+msgid "Heart rate (bpm)"
+msgstr "معدل النبض (نبضة/دقيقة)"
+
+msgid "Hospital Information System"
+msgstr "نظام معلومات المستشفى"
+
+msgid "Last name"
+msgstr "اسم العائلة"
+
+msgid "Main menu"
+msgstr "القائمة الرئيسية"
+
+msgid "Male"
+msgstr "ذكر"
+
+msgid "Medical information"
+msgstr "المعلومات الطبية"
+
+msgid "Medical information is visible to doctors and nurses only."
+msgstr "المعلومات الطبية تظهر للأطباء والممرضين فقط."
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "National ID / Iqama"
+msgstr "الهوية الوطنية / الإقامة"
+
+msgid "New visit"
+msgstr "زيارة جديدة"
+
+msgid "Next"
+msgstr "التالي"
+
+msgid "Next day"
+msgstr "اليوم التالي"
+
+msgid "No appointments on this day."
+msgstr "لا توجد مواعيد في هذا اليوم."
+
+msgid "No entries match. Clear the filters to see all activity."
+msgstr "لا توجد نتائج مطابقة. امسح عوامل التصفية لعرض كل النشاط."
+
+msgid "No patient matches \"%(q)s\". Check the spelling or search by National ID."
+msgstr "لا يوجد مريض يطابق \"%(q)s\". تحقق من الإملاء أو ابحث بالهوية الوطنية."
+
+msgid "No patients yet. Register the first patient to get started."
+msgstr "لا يوجد مرضى بعد. سجّل أول مريض للبدء."
+
+msgid ""
+"No visits found. Open a patient and choose New visit to record the first "
+"one."
+msgstr "لا توجد زيارات. افتح ملف مريض واختر «زيارة جديدة» لتسجيل أول زيارة."
+
+msgid "No visits recorded yet."
+msgstr "لا توجد زيارات مسجلة بعد."
+
+msgid "No-show"
+msgstr "لم يحضر"
+
+msgid "None recorded"
+msgstr "لا شيء مسجل"
+
+msgid "Not entered yet"
+msgstr "لم يُدخل بعد"
+
+msgid "Notes"
+msgstr "ملاحظات"
+
+msgid "Nurse"
+msgstr "ممرض"
+
+msgid "Only scheduled appointments can be moved."
+msgstr "لا يمكن نقل إلا المواعيد المجدولة."
+
+msgid "Open"
+msgstr "فتح"
+
+msgid "Opened record"
+msgstr "فتح سجل"
+
+msgid "Page %(n)s of %(total)s"
+msgstr "صفحة %(n)s من %(total)s"
+
+msgid "Password"
+msgstr "كلمة المرور"
+
+msgid "Patient"
+msgstr "المريض"
+
+msgid "Patient registered. File number: %(mrn)s"
+msgstr "تم تسجيل المريض. رقم الملف: %(mrn)s"
+
+msgid "Patient: %(name)s (%(mrn)s)"
+msgstr "المريض: %(name)s (%(mrn)s)"
+
+msgid "Patients"
+msgstr "المرضى"
+
+msgid "Patients registered"
+msgstr "المرضى المسجلون"
+
+msgid ""
+"Patients, appointments and visits in one calm place, with every access "
+"recorded."
+msgstr "المرضى والمواعيد والزيارات في مكان واحد هادئ، مع تسجيل كل عملية وصول."
+
+msgid "Personal details"
+msgstr "البيانات الشخصية"
+
+msgid "Phone"
+msgstr "الجوال"
+
+msgid "Previous"
+msgstr "السابق"
+
+msgid "Previous day"
+msgstr "اليوم السابق"
+
+msgid "Reason"
+msgstr "السبب"
+
+msgid "Reason for visit"
+msgstr "سبب الزيارة"
+
+msgid "Recent visits"
+msgstr "آخر الزيارات"
+
+msgid "Receptionist"
+msgstr "موظف استقبال"
+
+msgid "Record"
+msgstr "السجل"
+
+msgid "Record visits and medical notes."
+msgstr "تسجيل الزيارات والملاحظات الطبية."
+
+msgid "Register and search patient records."
+msgstr "تسجيل سجلات المرضى والبحث فيها."
+
+msgid "Register patient"
+msgstr "تسجيل مريض"
+
+msgid "Reschedule"
+msgstr "إعادة جدولة"
+
+msgid "Reschedule appointment"
+msgstr "إعادة جدولة الموعد"
+
+msgid "Role"
+msgstr "الدور"
+
+msgid "Save appointment"
+msgstr "حفظ الموعد"
+
+msgid "Save patient"
+msgstr "حفظ المريض"
+
+msgid "Save visit"
+msgstr "حفظ الزيارة"
+
+msgid "Scheduled"
+msgstr "مجدول"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "Search by name, file number, National ID or phone"
+msgstr "ابحث بالاسم أو رقم الملف أو الهوية أو الجوال"
+
+msgid "Search by patient name, file number or reason"
+msgstr "ابحث باسم المريض أو رقم الملف أو السبب"
+
+msgid "Search by username or record"
+msgstr "ابحث باسم المستخدم أو السجل"
+
+msgid "See who opened or changed a record."
+msgstr "اعرف من فتح سجلاً أو عدّله."
+
+msgid ""
+"Sheikh Hassan Al-Afaleq Hospital. Use the account given to you by the IT "
+"department."
+msgstr ""
+"مستشفى الشيخ حسن الأفالق. استخدم الحساب الذي زوّدتك به إدارة تقنية "
+"المعلومات."
+
+msgid "Show"
+msgstr "عرض"
+
+msgid "Sign in"
+msgstr "تسجيل الدخول"
+
+msgid "Sign out"
+msgstr "تسجيل الخروج"
+
+msgid "Signed in"
+msgstr "تسجيل دخول"
+
+msgid "Signed out"
+msgstr "تسجيل خروج"
+
+msgid "Some fields need fixing. See the messages below."
+msgstr "بعض الحقول تحتاج إلى تصحيح. راجع الرسائل أدناه."
+
+msgid "Start visit"
+msgstr "بدء الزيارة"
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Status change"
+msgstr "تغيير الحالة"
+
+msgid "Systolic must be higher than diastolic."
+msgstr "يجب أن يكون الضغط الانقباضي أعلى من الانبساطي."
+
+msgid "Temperature"
+msgstr "الحرارة"
+
+msgid "Temperature (C)"
+msgstr "الحرارة (°م)"
+
+msgid "This appointment is %(status)s and cannot change."
+msgstr "هذا الموعد %(status)s ولا يمكن تغييره."
+
+msgid "Time"
+msgstr "الوقت"
+
+msgid ""
+"To start a visit, open a patient and choose New visit, or use Start visit on"
+" a checked-in appointment."
+msgstr ""
+"لبدء زيارة، افتح ملف مريض واختر «زيارة جديدة»، أو استخدم «بدء الزيارة» على "
+"موعد تم حضوره."
+
+msgid "Training prototype. Demo data only."
+msgstr "نموذج تدريبي. بيانات تجريبية فقط."
+
+msgid "Treatment plan"
+msgstr "الخطة العلاجية"
+
+msgid "Use \"Book appointment\" to add one."
+msgstr "استخدم «حجز موعد» لإضافة موعد."
+
+msgid "User"
+msgstr "المستخدم"
+
+msgid "Username"
+msgstr "اسم المستخدم"
+
+msgid "Visit"
+msgstr "الزيارة"
+
+msgid "Visit on %(dt)s"
+msgstr "زيارة بتاريخ %(dt)s"
+
+msgid "Visit saved."
+msgstr "تم حفظ الزيارة."
+
+msgid "Visits and notes"
+msgstr "الزيارات والملاحظات"
+
+msgid "Visits in the last 7 days"
+msgstr "الزيارات خلال آخر 7 أيام"
+
+msgid "Vital signs"
+msgstr "العلامات الحيوية"
+
+msgid "Waiting (checked in)"
+msgstr "في الانتظار (تم الحضور)"
+
+msgid "Weight"
+msgstr "الوزن"
+
+msgid "Weight (kg)"
+msgstr "الوزن (كجم)"
+
+msgid "Welcome back"
+msgstr "أهلاً بعودتك"
+
+msgid "Wrong username or password. Check both and try again."
+msgstr "اسم المستخدم أو كلمة المرور غير صحيحة. تحقق منهما وحاول مرة أخرى."
+
+msgid "You are signed in as %(role)s. Here is where the day stands."
+msgstr "سجّلت الدخول بصفة %(role)s. هذه نظرة على يومك."
+
+msgid "Your modules"
+msgstr "وحداتك"
+
+msgid "not assigned yet"
+msgstr "لم يُعيَّن بعد"
+
+msgid "today"
+msgstr "اليوم"

@@ -25,3 +25,26 @@ class AccessTests(TestCase):
         self.assertEqual(admin.role, "admin")
         self.client.login(username="a", password="x")
         self.assertContains(self.client.get(reverse("dashboard")), "Audit log")
+
+
+class LanguageTests(TestCase):
+    def test_default_is_english_ltr(self):
+        r = self.client.get(reverse("login"))
+        self.assertContains(r, 'dir="ltr"')
+        self.assertContains(r, "Welcome back")
+
+    def test_switch_to_arabic_and_back(self):
+        r = self.client.post("/i18n/setlang/", {"language": "ar", "next": "/login/"}, follow=True)
+        self.assertContains(r, 'dir="rtl"')
+        self.assertContains(r, "أهلاً بعودتك")
+        r = self.client.post("/i18n/setlang/", {"language": "en", "next": "/login/"}, follow=True)
+        self.assertContains(r, "Welcome back")
+
+    def test_dashboard_in_arabic(self):
+        User.objects.create_user("n", password="x", role="nurse")
+        self.client.login(username="n", password="x")
+        self.client.post("/i18n/setlang/", {"language": "ar", "next": "/"})
+        r = self.client.get("/")
+        self.assertContains(r, "المرضى")
+        self.assertContains(r, "ممرض")
+        self.assertNotContains(r, "Audit log")

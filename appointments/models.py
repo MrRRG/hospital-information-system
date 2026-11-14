@@ -3,6 +3,7 @@ from datetime import time
 from django.conf import settings
 from django.db import models
 from django.db.models import Q
+from django.utils.translation import gettext_lazy as _
 
 # Clinic runs 08:00 to 16:00 in 30-minute slots (last slot 15:30).
 SLOTS = [(time(h, m), f"{h:02d}:{m:02d}") for h in range(8, 16) for m in (0, 30)]
@@ -10,11 +11,11 @@ SLOTS = [(time(h, m), f"{h:02d}:{m:02d}") for h in range(8, 16) for m in (0, 30)
 
 class Appointment(models.Model):
     class Status(models.TextChoices):
-        SCHEDULED = "scheduled", "Scheduled"
-        CHECKED_IN = "checked_in", "Checked in"
-        COMPLETED = "completed", "Completed"
-        CANCELLED = "cancelled", "Cancelled"
-        NO_SHOW = "no_show", "No-show"
+        SCHEDULED = "scheduled", _("Scheduled")
+        CHECKED_IN = "checked_in", _("Checked in")
+        COMPLETED = "completed", _("Completed")
+        CANCELLED = "cancelled", _("Cancelled")
+        NO_SHOW = "no_show", _("No-show")
 
     # Which status can follow which. Completed, cancelled and no-show are final.
     TRANSITIONS = {

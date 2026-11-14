@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends "base.html" %}{% load i18n %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 <h1>{{ title }}</h1>
-<p class="muted">Patient: {{ patient.full_name }} ({{ patient.mrn }})</p>
+<p class="muted">{% blocktrans trimmed with name=patient.full_name mrn=patient.mrn %}Patient: {{ name }} ({{ mrn }}){% endblocktrans %}</p>
 <form method="post" class="card form">
   {% csrf_token %}
-  {% if form.errors %}<p class="error">Some fields need fixing. See the messages below.</p>{% endif %}
+  {% if form.errors %}<p class="error">{% trans "Some fields need fixing. See the messages below." %}</p>{% endif %}
   {% for field in form %}
   <div class="field">
     <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -13,7 +13,7 @@
     {% for e in field.errors %}<span class="error-text">{{ e }}</span>{% endfor %}
   </div>
   {% endfor %}
-  <button class="btn" type="submit">Save visit</button>
-  <a class="cancel" href="{% url 'patient_detail' patient.pk %}">Cancel</a>
+  <button class="btn" type="submit">{% trans "Save visit" %}</button>
+  <a class="cancel" href="{% url 'patient_detail' patient.pk %}">{% trans "Cancel" %}</a>
 </form>
 {% endblock %}

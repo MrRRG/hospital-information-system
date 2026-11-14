@@ -1,4 +1,6 @@
 from django import forms
+from django.utils.translation import gettext as _t
+from django.utils.translation import gettext_lazy as _
 
 from .models import Visit
 
@@ -10,6 +12,7 @@ class VisitForm(forms.ModelForm):
     class Meta:
         model = Visit
         fields = ["complaint"] + VITALS + CLINICAL
+        labels = {"diagnosis": _("Diagnosis"), "treatment_plan": _("Treatment plan")}
         widgets = {f: forms.Textarea(attrs={"rows": 3}) for f in CLINICAL}
 
     def __init__(self, *args, user=None, **kwargs):
@@ -23,7 +26,7 @@ class VisitForm(forms.ModelForm):
         data = super().clean()
         s, d = data.get("systolic"), data.get("diastolic")
         if (s and not d) or (d and not s):
-            self.add_error("diastolic", "Enter both blood pressure numbers, or leave both empty.")
+            self.add_error("diastolic", _t("Enter both blood pressure numbers, or leave both empty."))
         elif s and d and s <= d:
-            self.add_error("systolic", "Systolic must be higher than diastolic.")
+            self.add_error("systolic", _t("Systolic must be higher than diastolic."))
         return data

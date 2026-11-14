@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.utils.translation import gettext as _
 from django.shortcuts import get_object_or_404, redirect, render
 
 from audit.utils import record
@@ -41,9 +42,9 @@ def patient_create(request):
         patient.created_by = request.user
         patient.save()
         record(request, "create", f"Patient {patient.mrn}", patient.full_name)
-        messages.success(request, f"Patient registered. File number: {patient.mrn}")
+        messages.success(request, _("Patient registered. File number: %(mrn)s") % {"mrn": patient.mrn})
         return redirect("patient_detail", pk=patient.pk)
-    return render(request, "patients/form.html", {"form": form, "title": "Register patient"})
+    return render(request, "patients/form.html", {"form": form, "title": _("Register patient")})
 
 
 @login_required
@@ -53,6 +54,6 @@ def patient_edit(request, pk):
     if request.method == "POST" and form.is_valid():
         form.save()
         record(request, "update", f"Patient {patient.mrn}", "Fields: " + ", ".join(form.changed_data))
-        messages.success(request, "Changes saved.")
+        messages.success(request, _("Changes saved."))
         return redirect("patient_detail", pk=patient.pk)
-    return render(request, "patients/form.html", {"form": form, "title": f"Edit {patient.full_name}"})
+    return render(request, "patients/form.html", {"form": form, "title": _("Edit %(name)s") % {"name": patient.full_name}})

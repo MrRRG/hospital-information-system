@@ -1,27 +1,27 @@
-{% extends "base.html" %}
-{% block title %}Visit{% endblock %}
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% trans "Visit" %}{% endblock %}
 {% block content %}
 {% for m in messages %}<p class="ok">{{ m }}</p>{% endfor %}
 <div class="head">
-  <div><h1>Visit on {{ visit.visit_time|date:"j M Y, H:i" }}</h1>
-  <p class="muted"><a href="{% url 'patient_detail' visit.patient.pk %}">{{ visit.patient.full_name }}</a> ({{ visit.patient.mrn }}) - Doctor: {{ visit.doctor.get_full_name|default:"not assigned yet" }}</p></div>
-  <a class="btn" href="{% url 'visit_edit' visit.pk %}">Edit</a>
+  <div><h1>{% blocktrans trimmed with dt=visit.visit_time|date:"j M Y, H:i" %}Visit on {{ dt }}{% endblocktrans %}</h1>
+  <p class="muted"><a href="{% url 'patient_detail' visit.patient.pk %}">{{ visit.patient.full_name }}</a> ({{ visit.patient.mrn }}) - {% trans "Doctor" %}: {% if visit.doctor %}{{ visit.doctor.get_full_name }}{% else %}{% trans "not assigned yet" %}{% endif %}</p></div>
+  <a class="btn" href="{% url 'visit_edit' visit.pk %}">{% trans "Edit" %}</a>
 </div>
-<div class="card"><h2>Reason for visit</h2><p>{{ visit.complaint }}</p></div>
-<div class="card"><h2>Vital signs</h2>
+<div class="card"><h2>{% trans "Reason for visit" %}</h2><p>{{ visit.complaint }}</p></div>
+<div class="card"><h2>{% trans "Vital signs" %}</h2>
   <dl>
-    <dt>Temperature</dt><dd>{% if visit.temperature %}{{ visit.temperature }} C{% else %}-{% endif %}</dd>
-    <dt>Blood pressure</dt><dd>{{ visit.blood_pressure|default:"-" }}</dd>
-    <dt>Heart rate</dt><dd>{% if visit.heart_rate %}{{ visit.heart_rate }} bpm{% else %}-{% endif %}</dd>
-    <dt>Weight</dt><dd>{% if visit.weight_kg %}{{ visit.weight_kg }} kg{% else %}-{% endif %}</dd>
+    <dt>{% trans "Temperature" %}</dt><dd>{% if visit.temperature %}{{ visit.temperature }} C{% else %}-{% endif %}</dd>
+    <dt>{% trans "Blood pressure" %}</dt><dd>{{ visit.blood_pressure|default:"-" }}</dd>
+    <dt>{% trans "Heart rate" %}</dt><dd>{% if visit.heart_rate %}{{ visit.heart_rate }} bpm{% else %}-{% endif %}</dd>
+    <dt>{% trans "Weight" %}</dt><dd>{% if visit.weight_kg %}{{ visit.weight_kg }} kg{% else %}-{% endif %}</dd>
   </dl>
 </div>
-<div class="card"><h2>Doctor's assessment</h2>
+<div class="card"><h2>{% trans "Doctor's assessment" %}</h2>
   <dl>
-    <dt>Diagnosis</dt><dd>{{ visit.diagnosis|default:"Not entered yet"|linebreaksbr }}</dd>
-    <dt>Treatment plan</dt><dd>{{ visit.treatment_plan|default:"Not entered yet"|linebreaksbr }}</dd>
-    <dt>Notes</dt><dd>{{ visit.notes|default:"-"|linebreaksbr }}</dd>
+    <dt>{% trans "Diagnosis" %}</dt><dd>{% if visit.diagnosis %}{{ visit.diagnosis|linebreaksbr }}{% else %}{% trans "Not entered yet" %}{% endif %}</dd>
+    <dt>{% trans "Treatment plan" %}</dt><dd>{% if visit.treatment_plan %}{{ visit.treatment_plan|linebreaksbr }}{% else %}{% trans "Not entered yet" %}{% endif %}</dd>
+    <dt>{% trans "Notes" %}</dt><dd>{% if visit.notes %}{{ visit.notes|linebreaksbr }}{% else %}-{% endif %}</dd>
   </dl>
 </div>
-<p><a href="{% url 'visit_list' %}">Back to visits</a></p>
+<p><a href="{% url 'visit_list' %}">{% trans "Back to visits" %}</a></p>
 {% endblock %}

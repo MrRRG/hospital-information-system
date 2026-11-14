@@ -3,16 +3,17 @@ from datetime import date
 from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 national_id_validator = RegexValidator(
-    r"^[12]\d{9}$", "Enter a 10-digit National ID or Iqama number starting with 1 or 2."
+    r"^[12]\d{9}$", _("Enter a 10-digit National ID or Iqama number starting with 1 or 2.")
 )
 
 
 class Patient(models.Model):
     class Gender(models.TextChoices):
-        MALE = "M", "Male"
-        FEMALE = "F", "Female"
+        MALE = "M", _("Male")
+        FEMALE = "F", _("Female")
 
     class BloodType(models.TextChoices):
         A_POS = "A+", "A+"
@@ -24,8 +25,8 @@ class Patient(models.Model):
         O_POS = "O+", "O+"
         O_NEG = "O-", "O-"
 
-    mrn = models.CharField("File number", max_length=12, unique=True, null=True, editable=False)
-    national_id = models.CharField("National ID / Iqama", max_length=10, unique=True,
+    mrn = models.CharField(_("File number"), max_length=12, unique=True, null=True, editable=False)
+    national_id = models.CharField(_("National ID / Iqama"), max_length=10, unique=True,
                                    validators=[national_id_validator])
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)

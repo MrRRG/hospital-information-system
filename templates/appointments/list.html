@@ -1,29 +1,29 @@
-{% extends "base.html" %}
-{% block title %}Appointments{% endblock %}
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% trans "Appointments" %}{% endblock %}
 {% block content %}
 {% for m in messages %}<p class="{% if m.tags == 'error' %}error{% else %}ok{% endif %}">{{ m }}</p>{% endfor %}
 <div class="head">
   <div>
-    <h1>Appointments</h1>
-    <p class="muted">{{ day|date:"l, j F Y" }}{% if is_today %} (today){% endif %}</p>
+    <h1>{% trans "Appointments" %}</h1>
+    <p class="muted">{{ day|date:"l, j F Y" }}{% if is_today %} ({% trans "today" %}){% endif %}</p>
   </div>
-  {% if user.role != "doctor" %}<a class="btn" href="{% url 'appointment_create' %}">Book appointment</a>{% endif %}
+  {% if user.role != "doctor" %}<a class="btn" href="{% url 'appointment_create' %}">{% trans "Book appointment" %}</a>{% endif %}
 </div>
 <form class="search" method="get">
-  <a class="btn ghost" href="?date={{ prev.isoformat }}&doctor={{ doctor_id }}">Previous day</a>
+  <a class="btn ghost" href="?date={{ prev.isoformat }}&doctor={{ doctor_id }}">{% trans "Previous day" %}</a>
   <input type="date" name="date" value="{{ day.isoformat }}">
   {% if user.role != "doctor" %}
   <select name="doctor">
-    <option value="">All doctors</option>
+    <option value="">{% trans "All doctors" %}</option>
     {% for d in doctors %}<option value="{{ d.pk }}" {% if doctor_id == d.pk|stringformat:"s" %}selected{% endif %}>{{ d.get_full_name }}</option>{% endfor %}
   </select>
   {% endif %}
-  <button class="btn" type="submit">Show</button>
-  <a class="btn ghost" href="?date={{ next.isoformat }}&doctor={{ doctor_id }}">Next day</a>
+  <button class="btn" type="submit">{% trans "Show" %}</button>
+  <a class="btn ghost" href="?date={{ next.isoformat }}&doctor={{ doctor_id }}">{% trans "Next day" %}</a>
 </form>
 {% if items %}
 <div class="scroll"><table>
-  <thead><tr><th>Time</th><th>Patient</th><th>Doctor</th><th>Reason</th><th>Status</th><th>Actions</th></tr></thead>
+  <thead><tr><th>{% trans "Time" %}</th><th>{% trans "Patient" %}</th><th>{% trans "Doctor" %}</th><th>{% trans "Reason" %}</th><th>{% trans "Status" %}</th><th>{% trans "Actions" %}</th></tr></thead>
   <tbody>
   {% for a in items %}
     <tr>
@@ -35,14 +35,14 @@
       <td class="acts">
         {% if a.status == "scheduled" or a.status == "checked_in" %}
         {% if "checked_in" in rights and a.status == "scheduled" %}
-          <form method="post" action="{% url 'appointment_status' a.pk 'checked_in' %}">{% csrf_token %}<button class="mini">Check in</button></form>{% endif %}
-        {% if user.role == "doctor" or user.role == "admin" %}{% if a.status == "checked_in" %}<a class="mini" href="{% url 'visit_create' %}?appointment={{ a.pk }}">Start visit</a>{% endif %}{% endif %}
+          <form method="post" action="{% url 'appointment_status' a.pk 'checked_in' %}">{% csrf_token %}<button class="mini">{% trans "Check in" %}</button></form>{% endif %}
+        {% if user.role == "doctor" or user.role == "admin" %}{% if a.status == "checked_in" %}<a class="mini" href="{% url 'visit_create' %}?appointment={{ a.pk }}">{% trans "Start visit" %}</a>{% endif %}{% endif %}
         {% if "completed" in rights and a.status == "checked_in" %}
-          <form method="post" action="{% url 'appointment_status' a.pk 'completed' %}">{% csrf_token %}<button class="mini">Complete</button></form>{% endif %}
+          <form method="post" action="{% url 'appointment_status' a.pk 'completed' %}">{% csrf_token %}<button class="mini">{% trans "Complete" %}</button></form>{% endif %}
         {% if "cancelled" in rights and a.status == "scheduled" %}
-          <form method="post" action="{% url 'appointment_status' a.pk 'cancelled' %}">{% csrf_token %}<button class="mini">Cancel</button></form>
-          <form method="post" action="{% url 'appointment_status' a.pk 'no_show' %}">{% csrf_token %}<button class="mini">No-show</button></form>
-          {% if user.role != "doctor" %}<a class="mini" href="{% url 'appointment_edit' a.pk %}">Reschedule</a>{% endif %}{% endif %}
+          <form method="post" action="{% url 'appointment_status' a.pk 'cancelled' %}">{% csrf_token %}<button class="mini">{% trans "Cancel" %}</button></form>
+          <form method="post" action="{% url 'appointment_status' a.pk 'no_show' %}">{% csrf_token %}<button class="mini">{% trans "No-show" %}</button></form>
+          {% if user.role != "doctor" %}<a class="mini" href="{% url 'appointment_edit' a.pk %}">{% trans "Reschedule" %}</a>{% endif %}{% endif %}
         {% endif %}
       </td>
     </tr>
@@ -50,6 +50,6 @@
   </tbody>
 </table></div>
 {% else %}
-<p class="empty">No appointments on this day. {% if user.role != "doctor" %}Use "Book appointment" to add one.{% endif %}</p>
+<p class="empty">{% trans "No appointments on this day." %} {% if user.role != "doctor" %}{% trans 'Use "Book appointment" to add one.' %}{% endif %}</p>
 {% endif %}
 {% endblock %}

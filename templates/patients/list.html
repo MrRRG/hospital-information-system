@@ -1,17 +1,17 @@
-{% extends "base.html" %}
-{% block title %}Patients{% endblock %}
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% trans "Patients" %}{% endblock %}
 {% block content %}
 <div class="head">
-  <h1>Patients</h1>
-  <a class="btn" href="{% url 'patient_create' %}">Register patient</a>
+  <h1>{% trans "Patients" %}</h1>
+  <a class="btn" href="{% url 'patient_create' %}">{% trans "Register patient" %}</a>
 </div>
 <form class="search" method="get">
-  <input type="search" name="q" value="{{ q }}" placeholder="Search by name, file number, National ID or phone">
-  <button class="btn" type="submit">Search</button>
+  <input type="search" name="q" value="{{ q }}" placeholder="{% trans 'Search by name, file number, National ID or phone' %}">
+  <button class="btn" type="submit">{% trans "Search" %}</button>
 </form>
 {% if page.object_list %}
 <div class="scroll"><table>
-  <thead><tr><th>File no.</th><th>Name</th><th>Age</th><th>Gender</th><th>Phone</th></tr></thead>
+  <thead><tr><th>{% trans "File no." %}</th><th>{% trans "Name" %}</th><th>{% trans "Age" %}</th><th>{% trans "Gender" %}</th><th>{% trans "Phone" %}</th></tr></thead>
   <tbody>
   {% for p in page %}
     <tr>
@@ -23,11 +23,11 @@
   </tbody>
 </table></div>
 <p class="pager">
-  {% if page.has_previous %}<a href="?q={{ q|urlencode }}&page={{ page.previous_page_number }}">Previous</a>{% endif %}
-  Page {{ page.number }} of {{ page.paginator.num_pages }}
-  {% if page.has_next %}<a href="?q={{ q|urlencode }}&page={{ page.next_page_number }}">Next</a>{% endif %}
+  {% if page.has_previous %}<a href="?q={{ q|urlencode }}&page={{ page.previous_page_number }}">{% trans "Previous" %}</a>{% endif %}
+  {% blocktrans trimmed with n=page.number total=page.paginator.num_pages %}Page {{ n }} of {{ total }}{% endblocktrans %}
+  {% if page.has_next %}<a href="?q={{ q|urlencode }}&page={{ page.next_page_number }}">{% trans "Next" %}</a>{% endif %}
 </p>
 {% else %}
-<p class="empty">{% if q %}No patient matches "{{ q }}". Check the spelling or search by National ID.{% else %}No patients yet. Register the first patient to get started.{% endif %}</p>
+<p class="empty">{% if q %}{% blocktrans trimmed %}No patient matches "{{ q }}". Check the spelling or search by National ID.{% endblocktrans %}{% else %}{% trans "No patients yet. Register the first patient to get started." %}{% endif %}</p>
 {% endif %}
 {% endblock %}

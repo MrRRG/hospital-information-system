@@ -1,7 +1,8 @@
-{% extends "base.html" %}
-{% block title %}Sign in{% endblock %}
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% trans "Sign in" %}{% endblock %}
 {% block guest %}
 <div class="login-page">
+  <div class="lang-corner">{% include "partials/lang.html" %}</div>
   <section class="art" aria-hidden="true">
     <svg class="lattice" width="100%" height="100%">
       <defs>
@@ -17,9 +18,9 @@
       <rect width="100%" height="100%" fill="url(#star)"/>
     </svg>
     <div class="art-copy">
-      <p class="ar">نظام معلومات المستشفى</p>
-      <h2>Care, kept in order.</h2>
-      <p>Patients, appointments and visits in one calm place, with every access recorded.</p>
+      {% if LANGUAGE_CODE == "ar" %}<p class="en-line" lang="en">Hospital Information System</p>{% else %}<p class="ar" lang="ar">نظام معلومات المستشفى</p>{% endif %}
+      <h2>{% trans "Care, kept in order." %}</h2>
+      <p>{% trans "Patients, appointments and visits in one calm place, with every access recorded." %}</p>
     </div>
     <svg class="ecg" viewBox="0 0 600 120" preserveAspectRatio="none">
       <path d="M0 62H150L172 62 188 24 210 100 230 38 244 62H330L346 62 360 34 376 84 388 62H600" pathLength="1"/>
@@ -33,17 +34,17 @@
         <path d="M16.5 9h7v7.5H31v7h-7.5V31h-7v-7.5H9v-7h7.5z" fill="#fffdf8"/>
         <path d="M5 21h7l2-4 3 8 2.5-6 1.5 2H35" fill="none" stroke="#e9a91e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <h1>Welcome back</h1>
-      <p class="muted">Sheikh Hassan Al-Afaleq Hospital. Use the account given to you by the IT department.</p>
+      <h1>{% trans "Welcome back" %}</h1>
+      <p class="muted">{% trans "Sheikh Hassan Al-Afaleq Hospital. Use the account given to you by the IT department." %}</p>
       <form method="post">
         {% csrf_token %}
-        {% if form.errors %}<p class="error" role="alert">Wrong username or password. Check both and try again.</p>{% endif %}
-        <label>Username {{ form.username }}</label>
-        <label>Password {{ form.password }}</label>
+        {% if form.errors %}<p class="error" role="alert">{% trans "Wrong username or password. Check both and try again." %}</p>{% endif %}
+        <label>{% trans "Username" %} {{ form.username }}</label>
+        <label>{% trans "Password" %} {{ form.password }}</label>
         <input type="hidden" name="next" value="{{ next }}">
-        <button class="btn wide" type="submit">Sign in</button>
+        <button class="btn wide" type="submit">{% trans "Sign in" %}</button>
       </form>
-      <p class="fine">Training prototype. Demo data only.</p>
+      <p class="fine">{% trans "Training prototype. Demo data only." %}</p>
     </div>
   </section>
 </div>

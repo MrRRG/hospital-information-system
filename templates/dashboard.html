@@ -1,25 +1,25 @@
-{% extends "base.html" %}
-{% block title %}Dashboard{% endblock %}
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% trans "Dashboard" %}{% endblock %}
 {% block content %}
 <header class="hero">
   <div>
     <p class="eyebrow">{% now "l, j F Y" %}</p>
-    <h1>{{ greeting }}, {{ user.first_name|default:user.username }}.</h1>
-    <p class="muted">You are signed in as {{ user.get_role_display|lower }}. Here is where the day stands.</p>
+    <h1>{% blocktrans trimmed with name=user.first_name|default:user.username %}{{ greeting }}, {{ name }}.{% endblocktrans %}</h1>
+    <p class="muted">{% blocktrans trimmed with role=user.get_role_display|lower %}You are signed in as {{ role }}. Here is where the day stands.{% endblocktrans %}</p>
   </div>
   <svg class="pulse" viewBox="0 0 300 60" aria-hidden="true"><path d="M0 32H92L104 32 112 12 124 52 134 22 142 32H300" pathLength="1"/></svg>
 </header>
 <div class="stats">
   {% for label, value in stats %}<div class="stat"><strong>{{ value }}</strong><span>{{ label }}</span></div>{% endfor %}
 </div>
-<h2 class="section">Your modules</h2>
+<h2 class="section">{% trans "Your modules" %}</h2>
 <div class="grid">
   {% for m in modules %}
   <a class="tile" href="{% url m.url %}">
     <span class="ico">{% include "partials/icon.html" with name=m.key %}</span>
     <h3>{{ m.title }}</h3>
     <p>{{ m.text }}</p>
-    <span class="open">Open <i>&rarr;</i></span>
+    <span class="open">{% trans "Open" %} <i>&rarr;</i></span>
   </a>
   {% endfor %}
 </div>

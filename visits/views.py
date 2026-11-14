@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.utils.translation import gettext as _
 from django.shortcuts import get_object_or_404, redirect, render
 
 from accounts.permissions import role_required
@@ -50,9 +51,9 @@ def visit_create(request):
             visit.appointment.status = "completed"
             visit.appointment.save(update_fields=["status", "updated_at"])
         record(request, "create", f"Visit #{visit.pk}", f"Patient {patient.mrn}")
-        messages.success(request, "Visit saved.")
+        messages.success(request, _("Visit saved."))
         return redirect("visit_detail", pk=visit.pk)
-    return render(request, "visits/form.html", {"form": form, "patient": patient, "title": "New visit"})
+    return render(request, "visits/form.html", {"form": form, "patient": patient, "title": _("New visit")})
 
 
 @role_required(*STAFF)
@@ -72,6 +73,6 @@ def visit_edit(request, pk):
             visit.doctor = request.user
         visit.save()
         record(request, "update", f"Visit #{visit.pk}", f"Patient {visit.patient.mrn}")
-        messages.success(request, "Changes saved.")
+        messages.success(request, _("Changes saved."))
         return redirect("visit_detail", pk=visit.pk)
-    return render(request, "visits/form.html", {"form": form, "patient": visit.patient, "title": "Edit visit"})
+    return render(request, "visits/form.html", {"form": form, "patient": visit.patient, "title": _("Edit visit")})

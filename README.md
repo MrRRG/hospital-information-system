@@ -11,7 +11,8 @@ A web-based HIS prototype built during my co-op training at Sheikh Hassan Al-Afa
 - Appointments with double-booking prevention and status workflow (check-in, complete, cancel, no-show)
 - Visits: vital signs (nurse) and diagnosis / treatment plan (doctor)
 - Audit log of sign-ins, failed sign-ins, and record views and changes (administrator only)
-- Dashboard statistics per role, 21 automated tests
+- Dashboard statistics per role, 24 automated tests
+- English and Arabic (RTL) interface with a one-click language switch
 
 ## Tech
 Python 3, Django, SQLite (local) or PostgreSQL (online), WhiteNoise.

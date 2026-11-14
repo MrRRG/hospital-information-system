@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from .models import Patient
 
@@ -11,6 +12,11 @@ class PatientForm(forms.ModelForm):
         model = Patient
         fields = ["national_id", "first_name", "last_name", "date_of_birth", "gender",
                   "phone", "address"] + MEDICAL_FIELDS
+        labels = {
+            "first_name": _("First name"), "last_name": _("Last name"), "date_of_birth": _("Date of birth"),
+            "gender": _("Gender"), "phone": _("Phone"), "address": _("Address"), "blood_type": _("Blood type"),
+            "allergies": _("Allergies"), "chronic_conditions": _("Chronic conditions"),
+        }
         widgets = {
             "date_of_birth": forms.DateInput(attrs={"type": "date"}),
             "allergies": forms.Textarea(attrs={"rows": 2}),

@@ -3,6 +3,7 @@ from datetime import date, timedelta
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.translation import gettext as _
 from django.views.decorators.http import require_POST
 
 from accounts.models import User
@@ -49,25 +50,25 @@ def appointment_create(request):
         appt.created_by = request.user
         appt.save()
         record(request, "create", f"Appointment #{appt.pk}", f"{appt.patient.mrn} on {appt.date} {appt.start_time:%H:%M}")
-        messages.success(request, f"Booked {appt.patient.full_name} with {appt.doctor.get_full_name()} "
-                                  f"at {appt.start_time:%H:%M}.")
+        messages.success(request, _("Booked %(patient)s with %(doctor)s at %(time)s.") % {
+            "patient": appt.patient.full_name, "doctor": appt.doctor.get_full_name(), "time": f"{appt.start_time:%H:%M}"})
         return redirect(f"/appointments/?date={appt.date.isoformat()}")
-    return render(request, "appointments/form.html", {"form": form, "title": "Book appointment"})
+    return render(request, "appointments/form.html", {"form": form, "title": _("Book appointment")})
 
 
 @role_required("receptionist")
 def appointment_edit(request, pk):
     appt = get_object_or_404(Appointment, pk=pk)
     if appt.status != "scheduled":
-        messages.error(request, "Only scheduled appointments can be moved.")
+        messages.error(request, _("Only scheduled appointments can be moved."))
         return redirect(f"/appointments/?date={appt.date.isoformat()}")
     form = AppointmentForm(request.POST or None, instance=appt)
     if request.method == "POST" and form.is_valid():
         form.save()
         record(request, "update", f"Appointment #{appt.pk}", "Rescheduled")
-        messages.success(request, "Appointment updated.")
+        messages.success(request, _("Appointment updated."))
         return redirect(f"/appointments/?date={appt.date.isoformat()}")
-    return render(request, "appointments/form.html", {"form": form, "title": "Reschedule appointment"})
+    return render(request, "appointments/form.html", {"form": form, "title": _("Reschedule appointment")})
 
 
 @role_required("doctor", "receptionist")
@@ -82,7 +83,7 @@ def appointment_status(request, pk, new_status):
         appt.status = new_status
         appt.save(update_fields=["status", "updated_at"])
         record(request, "status", f"Appointment #{appt.pk}", f"-> {appt.get_status_display()}")
-        messages.success(request, f"{appt.patient.full_name}: {appt.get_status_display()}.")
+        messages.success(request, _("%(patient)s: %(status)s.") % {"patient": appt.patient.full_name, "status": appt.get_status_display()})
     else:
-        messages.error(request, f"This appointment is {appt.get_status_display().lower()} and cannot change.")
+        messages.error(request, _("This appointment is %(status)s and cannot change.") % {"status": str(appt.get_status_display()).lower()})
     return redirect(f"/appointments/?date={appt.date.isoformat()}")
