@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Patients{% endblock %}
+{% block content %}
+<div class="head">
+  <h1>Patients</h1>
+  <a class="btn" href="{% url 'patient_create' %}">Register patient</a>
+</div>
+<form class="search" method="get">
+  <input type="search" name="q" value="{{ q }}" placeholder="Search by name, file number, National ID or phone">
+  <button class="btn" type="submit">Search</button>
+</form>
+{% if page.object_list %}
+<div class="scroll"><table>
+  <thead><tr><th>File no.</th><th>Name</th><th>Age</th><th>Gender</th><th>Phone</th></tr></thead>
+  <tbody>
+  {% for p in page %}
+    <tr>
+      <td>{{ p.mrn }}</td>
+      <td><a href="{% url 'patient_detail' p.pk %}">{{ p.full_name }}</a></td>
+      <td>{{ p.age }}</td><td>{{ p.get_gender_display }}</td><td>{{ p.phone|default:"-" }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table></div>
+<p class="pager">
+  {% if page.has_previous %}<a href="?q={{ q|urlencode }}&page={{ page.previous_page_number }}">Previous</a>{% endif %}
+  Page {{ page.number }} of {{ page.paginator.num_pages }}
+  {% if page.has_next %}<a href="?q={{ q|urlencode }}&page={{ page.next_page_number }}">Next</a>{% endif %}
+</p>
+{% else %}
+<p class="empty">{% if q %}No patient matches "{{ q }}". Check the spelling or search by National ID.{% else %}No patients yet. Register the first patient to get started.{% endif %}</p>
+{% endif %}
+{% endblock %}

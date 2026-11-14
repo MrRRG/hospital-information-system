@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Visits{% endblock %}
+{% block content %}
+<div class="head"><div><h1>Visits and notes</h1><p class="muted">To start a visit, open a patient and choose New visit, or use Start visit on a checked-in appointment.</p></div></div>
+<form class="search" method="get">
+  <input type="search" name="q" value="{{ q }}" placeholder="Search by patient name, file number or reason">
+  <button class="btn" type="submit">Search</button>
+</form>
+{% if page.object_list %}
+<div class="scroll"><table>
+  <thead><tr><th>Date</th><th>Patient</th><th>Reason</th><th>Doctor</th><th>Diagnosis</th></tr></thead>
+  <tbody>
+  {% for v in page %}
+    <tr>
+      <td><a href="{% url 'visit_detail' v.pk %}">{{ v.visit_time|date:"j M Y, H:i" }}</a></td>
+      <td>{{ v.patient.full_name }}</td><td>{{ v.complaint }}</td>
+      <td>{{ v.doctor.get_full_name|default:"-" }}</td><td>{{ v.diagnosis|default:"-"|truncatechars:40 }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table></div>
+<p class="pager">
+  {% if page.has_previous %}<a href="?q={{ q|urlencode }}&page={{ page.previous_page_number }}">Previous</a>{% endif %}
+  Page {{ page.number }} of {{ page.paginator.num_pages }}
+  {% if page.has_next %}<a href="?q={{ q|urlencode }}&page={{ page.next_page_number }}">Next</a>{% endif %}
+</p>
+{% else %}
+<p class="empty">No visits found. Open a patient and choose New visit to record the first one.</p>
+{% endif %}
+{% endblock %}

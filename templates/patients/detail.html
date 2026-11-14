@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ patient.full_name }}{% endblock %}
+{% block content %}
+{% for m in messages %}<p class="ok">{{ m }}</p>{% endfor %}
+<div class="head">
+  <div><h1>{{ patient.full_name }}</h1><p class="muted">File number {{ patient.mrn }}</p></div>
+  <div class="btns">
+    {% if user.role != "nurse" %}<a class="btn ghost" href="{% url 'appointment_create' %}?patient={{ patient.pk }}">Book appointment</a>{% endif %}
+    {% if can_see_medical %}<a class="btn ghost" href="{% url 'visit_create' %}?patient={{ patient.pk }}">New visit</a>{% endif %}
+    <a class="btn" href="{% url 'patient_edit' patient.pk %}">Edit</a>
+  </div>
+</div>
+<div class="card">
+  <h2>Personal details</h2>
+  <dl>
+    <dt>National ID / Iqama</dt><dd>{{ patient.national_id }}</dd>
+    <dt>Date of birth</dt><dd>{{ patient.date_of_birth }} ({{ patient.age }} years)</dd>
+    <dt>Gender</dt><dd>{{ patient.get_gender_display }}</dd>
+    <dt>Phone</dt><dd>{{ patient.phone|default:"-" }}</dd>
+    <dt>Address</dt><dd>{{ patient.address|default:"-" }}</dd>
+  </dl>
+</div>
+{% if can_see_medical %}
+<div class="card">
+  <h2>Medical information</h2>
+  <dl>
+    <dt>Blood type</dt><dd>{{ patient.blood_type|default:"-" }}</dd>
+    <dt>Allergies</dt><dd>{{ patient.allergies|default:"None recorded" }}</dd>
+    <dt>Chronic conditions</dt><dd>{{ patient.chronic_conditions|default:"None recorded" }}</dd>
+  </dl>
+</div>
+<div class="card">
+  <h2>Recent visits</h2>
+  {% for v in visits %}
+    <p class="row"><a href="{% url 'visit_detail' v.pk %}">{{ v.visit_time|date:"j M Y" }}</a> - {{ v.complaint }}{% if v.diagnosis %} <span class="muted">({{ v.diagnosis }})</span>{% endif %}</p>
+  {% empty %}<p class="muted">No visits recorded yet.</p>{% endfor %}
+</div>
+{% else %}
+<p class="muted">Medical information is visible to doctors and nurses only.</p>
+{% endif %}
+<p><a href="{% url 'patient_list' %}">Back to patients</a></p>
+{% endblock %}

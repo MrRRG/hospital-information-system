@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Audit log{% endblock %}
+{% block content %}
+<h1>Audit log</h1>
+<p class="muted">Every sign-in and every record opened, created or changed. Entries cannot be edited or deleted here.</p>
+<form class="search" method="get">
+  <input type="search" name="q" value="{{ q }}" placeholder="Search by username or record">
+  <select name="action">
+    <option value="">All actions</option>
+    {% for value, label in actions %}<option value="{{ value }}" {% if action == value %}selected{% endif %}>{{ label }}</option>{% endfor %}
+  </select>
+  <button class="btn" type="submit">Filter</button>
+</form>
+{% if page.object_list %}
+<div class="scroll"><table>
+  <thead><tr><th>Time</th><th>User</th><th>Role</th><th>Action</th><th>Record</th><th>Details</th><th>IP</th></tr></thead>
+  <tbody>
+  {% for l in page %}
+    <tr><td>{{ l.timestamp|date:"j M Y, H:i:s" }}</td><td>{{ l.username|default:"-" }}</td><td>{{ l.role|default:"-" }}</td>
+        <td>{{ l.get_action_display }}</td><td>{{ l.target|default:"-" }}</td><td>{{ l.details|default:"-" }}</td><td>{{ l.ip_address|default:"-" }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table></div>
+<p class="pager">
+  {% if page.has_previous %}<a href="?q={{ q|urlencode }}&action={{ action }}&page={{ page.previous_page_number }}">Previous</a>{% endif %}
+  Page {{ page.number }} of {{ page.paginator.num_pages }}
+  {% if page.has_next %}<a href="?q={{ q|urlencode }}&action={{ action }}&page={{ page.next_page_number }}">Next</a>{% endif %}
+</p>
+{% else %}<p class="empty">No entries match. Clear the filters to see all activity.</p>{% endif %}
+{% endblock %}

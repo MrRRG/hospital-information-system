@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Sign in{% endblock %}
+{% block guest %}
+<div class="login-page">
+  <section class="art" aria-hidden="true">
+    <svg class="lattice" width="100%" height="100%">
+      <defs>
+        <pattern id="star" width="84" height="84" patternUnits="userSpaceOnUse">
+          <g fill="none" stroke="#fffdf8" stroke-opacity=".16" stroke-width="1">
+            <rect x="21" y="21" width="42" height="42"/>
+            <rect x="21" y="21" width="42" height="42" transform="rotate(45 42 42)"/>
+            <circle cx="42" cy="42" r="9"/>
+            <path d="M0 0l21 21M84 0L63 21M0 84l21-21M84 84L63 63"/>
+          </g>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#star)"/>
+    </svg>
+    <div class="art-copy">
+      <p class="ar">نظام معلومات المستشفى</p>
+      <h2>Care, kept in order.</h2>
+      <p>Patients, appointments and visits in one calm place, with every access recorded.</p>
+    </div>
+    <svg class="ecg" viewBox="0 0 600 120" preserveAspectRatio="none">
+      <path d="M0 62H150L172 62 188 24 210 100 230 38 244 62H330L346 62 360 34 376 84 388 62H600" pathLength="1"/>
+    </svg>
+  </section>
+  <section class="panel">
+    <div class="login">
+      <svg class="mark big" viewBox="0 0 40 40" aria-hidden="true">
+        <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17878a"/><stop offset="1" stop-color="#0b4c4f"/></linearGradient></defs>
+        <rect width="40" height="40" rx="12" fill="url(#g2)"/>
+        <path d="M16.5 9h7v7.5H31v7h-7.5V31h-7v-7.5H9v-7h7.5z" fill="#fffdf8"/>
+        <path d="M5 21h7l2-4 3 8 2.5-6 1.5 2H35" fill="none" stroke="#e9a91e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h1>Welcome back</h1>
+      <p class="muted">Sheikh Hassan Al-Afaleq Hospital. Use the account given to you by the IT department.</p>
+      <form method="post">
+        {% csrf_token %}
+        {% if form.errors %}<p class="error" role="alert">Wrong username or password. Check both and try again.</p>{% endif %}
+        <label>Username {{ form.username }}</label>
+        <label>Password {{ form.password }}</label>
+        <input type="hidden" name="next" value="{{ next }}">
+        <button class="btn wide" type="submit">Sign in</button>
+      </form>
+      <p class="fine">Training prototype. Demo data only.</p>
+    </div>
+  </section>
+</div>
+{% endblock %}
