@@ -41,10 +41,10 @@ msgid "Age"
 msgstr "العمر"
 
 msgid "Al-Afaleq"
-msgstr "الأفالق"
+msgstr "العفالق"
 
 msgid "Al-Afaleq Hospital"
-msgstr "مستشفى الأفالق"
+msgstr "مستشفى العفالق"
 
 msgid "All actions"
 msgstr "كل الإجراءات"
@@ -394,7 +394,7 @@ msgid ""
 "Sheikh Hassan Al-Afaleq Hospital. Use the account given to you by the IT "
 "department."
 msgstr ""
-"مستشفى الشيخ حسن الأفالق. استخدم الحساب الذي زوّدتك به إدارة تقنية "
+"مستشفى الشيخ حسن العفالق. استخدم الحساب الذي زوّدتك به إدارة تقنية "
 "المعلومات."
 
 msgid "Show"
